@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"strings"
 	"time"
-
 	"golang.org/x/net/html"
 )
 
@@ -17,30 +16,24 @@ func main() {
 		log.Fatal(err)
 	}
 	defer response.Body.Close()
-
 	textTags := []string{
 		"span", "h3",
 	}
-
 	tag := ""
 	enter := false
-
 	tokenizer := html.NewTokenizer(response.Body)
 	for {
 		tt := tokenizer.Next()
 		token := tokenizer.Token()
-
 		err := tokenizer.Err()
 		if err == io.EOF {
 			break
 		}
-
 		switch tt {
 		case html.ErrorToken:
 			log.Fatal(err)
 		case html.StartTagToken, html.SelfClosingTagToken:
 			enter = false
-
 			tag = token.Data
 			for _, ttt := range textTags {
 				if tag == ttt {
