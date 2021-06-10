@@ -1,4 +1,4 @@
-module gofasting.go
+module doifast.go
 
 go 1.16
 
