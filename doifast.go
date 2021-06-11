@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"strings"
 	"time"
+
 	"golang.org/x/net/html"
 )
 
@@ -47,8 +48,8 @@ func main() {
 				if len(data) > 0 {
 					temp := strings.Split(data, "\n")
 					for i := 0; i < len(temp); i++ {
-						if strings.Contains(temp[i], "Fast") == true {
-							fmt.Println(time.Now())
+						if strings.Contains(temp[i], "Fast") {
+							fmt.Println(time.Now().Format("January 1"))
 							fmt.Println(temp[i])
 						}
 					}
